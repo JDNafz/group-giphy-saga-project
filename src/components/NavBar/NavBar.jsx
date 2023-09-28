@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 // import Header from '../Header/Header';
 // import MenuItem from '../MenuItem/MenuItem';
 
-function NavBar() {
+function navBar() {
     const navBar = useSelector(store => store.navBar);
 
     console.log('navBar', navBar);
@@ -24,4 +24,4 @@ function NavBar() {
     );
 }
 
-export default NavBar;
+export default navBar;

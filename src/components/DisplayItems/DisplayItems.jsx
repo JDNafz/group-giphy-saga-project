@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 // import Header from '../Header/Header';
 
 function DisplayItems() {
-    const itemToDisplay = useSelector(state => state.itemToDisplay);
+    // const itemToDisplay = useSelector(state => state.itemToDisplay);
 
     return (
         <>

@@ -1,25 +1,5 @@
-<<<<<<< HEAD
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './components/App/App';
-import { Provider } from 'react';
-import createSagaMiddleware from 'redux-saga';
-import { put, takeEvery } from 'redux-saga/effects';
-import logger from 'redux-logger';
-import axios from 'axios';
-
-// SAGAS
-
-
-// REDUCERS
-
-
-// STORE
-
-=======
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./components/App/App.js";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 // Provider allows us to use redux within our react app
@@ -29,7 +9,6 @@ import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import axios from "axios";
 import { takeLatest, put } from "redux-saga/effects";
->>>>>>> 703a2b10e451b178c7a55dcbb6a35e4daf637f43
 
 // function* fetchFruit() {
 //   try {
@@ -73,7 +52,7 @@ function* rootSaga() {
 const sagaMiddleware = createSagaMiddleware();
 
 // This function (our reducer) will be called when an
-// action is dipatched. state = ['Apple'] sets the default
+// action is dispatched. state = ['Apple'] sets the default
 // value of the array.
 const ReducerName = (state = [], action) => {
   switch (action.type) {
