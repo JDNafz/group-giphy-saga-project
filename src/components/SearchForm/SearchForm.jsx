@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import DisplayItems from '../DisplayItems/DisplayItems';
 
 
 export default function SearchForm(){
@@ -19,6 +20,8 @@ export default function SearchForm(){
         <div>
             <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
             <button onClick={(event) => fetchGifs()}>Search</button>
+            <DisplayItems />
+            
         </div>
     )
 }

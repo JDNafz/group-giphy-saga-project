@@ -4,49 +4,27 @@ import { HashRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 // import Header from '../Header/Header';
-import NavBar from '../NavBar/NavBar'
-// import DisplayItems from '../DisplayItems/DisplayItems'
-// import SearchForm from '../SearchForm/SearchForm'
+// import NavBar from '../NavBar/NavBar'
+import DisplayItems from '../DisplayItems/DisplayItems'
+import SearchForm from '../SearchForm/SearchForm'
 
 
 function App(props) {
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   fetchMenu()
-  // }, [])
-
-  // const fetchMenu = () => {
-  //   axios.get('/api/pizza')
-  //     .then((result) => {
-  //       console.log('GET /api/pizza success', result.data);
-
-  //       dispatch({
-  //         type: 'MENU_REFRESH',
-  //         payload: result.data
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log('GET /api/pizza fail', err);
-  //     })
-  // }
-
 
   return (
     <Router>
       <div className='App'>
           
         <Route path="/">
-            <NavBar />
-          </Route>
-
-          <Route path="/DisplayItems" exact>
+            {/* <NavBar /> */}
+            <SearchForm />
             {/* <DisplayItems /> */}
           </Route>
 
+          <Route path="/DisplayItems" exact>
+          </Route>
+
           <Route path="/SearchForm" exact>
-            {/* <SearchForm /> */}
           </Route>
 {/* Extra Routes 
           <Route path="/checkout" exact>
