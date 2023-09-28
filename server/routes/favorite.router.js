@@ -3,6 +3,10 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
+require("dotenv").config();
+
+const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
+
 // return all favorite images
 router.get('/', (req, res) => {
   res.sendStatus(200);
