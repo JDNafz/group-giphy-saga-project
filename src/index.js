@@ -24,15 +24,15 @@ function* fetchGifs(action) {
 }
 
 
-function* postGifs(action) {
-  try {
-    // console.log (action.payload);
-    yield axios.post("/api/favorite", {fruit:action.payload});
-    yield put({ type: "FETCH_GIFS" });
-  } catch (error) {
-    console.log("error posting fruit", error);
-  }
-}
+// function* postFruitBasketion) {
+//   try {
+//     // console.log (action.payload);
+//     yield axios.post("/api/favorite", {fruit:action.payload});
+//     yield put({ type: "FETCH_FRUITS" });
+//   } catch (error) {
+//     console.log("error posting fruit", error);
+//   }
+// }
 
 // function* deleteFruit(action) {
 //   try {
@@ -48,7 +48,7 @@ function* postGifs(action) {
 // SAGAS ALL GO HERE
 function* rootSaga() {
   yield takeLatest("FETCH_GIFS", fetchGifs);
-//   yield takeLatest("ADD_GIFS", postGifs);
+//   yield takeLatest("ADD_FRUIT", postFruitBasket);
 //   yield takeLatest("DELETE_FRUIT", deleteFruit);
 
   
