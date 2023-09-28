@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Header from '../Header/Header';
-import MenuItem from '../MenuItem/MenuItem';
+// import MenuItem from '../MenuItem/MenuItem';
 
 function NavBar() {
     const navBar = useSelector(store => store.navBar);
