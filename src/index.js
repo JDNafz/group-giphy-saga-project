@@ -71,7 +71,7 @@ const ReducerName = (state = [], action) => {
 // REDUCERS GO HERE
 const storeInstance = createStore(
   combineReducers({
-    // ReducerName, //JD init, change this
+    ReducerName, //JD init, change this
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
