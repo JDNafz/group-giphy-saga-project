@@ -16,10 +16,9 @@ import { takeLatest, put } from "redux-saga/effects";
 function* fetchGifs(action) {
   try {
     console.log("in sagas fetchGifs")
-    const gifResponse = yield axios.get("/api/giphy/" + action.payload); // Next line is the .then( assuming no errors
-    // put() sends to somewhere in same document
-    console.log("SMOKE", gifResponse.data.data)
-    yield put({ type: "SET_GIFS", payload: gifResponse.data });
+    const gifResponse = yield axios.get("/api/giphy/" + action.payload); // 
+    // console.log("SMOKE", gifResponse)
+    yield put({ type: "SET_GIFS", payload: gifResponse.data.data });
   } catch (error) {
     console.log("error fetching gifs", error);
   }
@@ -67,9 +66,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 
 // REDUCER
-const ReducerName = (state = [], action) => {
+const newGifs = (state = [{url: "", images: {original: {url: ""}}}], action) => {
   switch (action.type) {
-    case "SCREAMER":
+    case "SET_GIFS":
       return action.payload;
     default:
       return state;
@@ -79,7 +78,7 @@ const ReducerName = (state = [], action) => {
 // REDUCERS GO HERE
 const storeInstance = createStore(
   combineReducers({
-    ReducerName, //JD init, change this
+    newGifs, //JD init, change this
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
