@@ -11,24 +11,28 @@ import createSagaMiddleware from "redux-saga";
 import axios from "axios";
 import { takeLatest, put } from "redux-saga/effects";
 
-// function* fetchFruit() {
-//   try {
-//     const fruitResponse = yield axios.get("/fruit"); // Next line is the .then( assuming no errors
-//     // put() sends to somewhere in same document
-//     yield put({ type: "SET_BASKET", payload: fruitResponse.data });
-//   } catch (error) {
-//     console.log("error fetching fruit", error);
-//   }
-// }
-// function* postFruit(action) {
-//   try {
-//     // console.log (action.payload);
-//     yield axios.post("/fruit", {fruit:action.payload});
-//     yield put({ type: "FETCH_FRUIT" });
-//   } catch (error) {
-//     console.log("error posting fruit", error);
-//   }
-// }
+// SAGAS
+
+function* fetchGifs(action) {
+  try {
+    const gifResponse = yield axios.get("/api/giphy/" + action.payload); // Next line is the .then( assuming no errors
+    // put() sends to somewhere in same document
+    yield put({ type: "SET_GIFS", payload: gifResponse.data });
+  } catch (error) {
+    console.log("error fetching gifs", error);
+  }
+}
+
+
+function* postGifs(action) {
+  try {
+    // console.log (action.payload);
+    yield axios.post("/api/favorite", {fruit:action.payload});
+    yield put({ type: "FETCH_GIFS" });
+  } catch (error) {
+    console.log("error posting fruit", error);
+  }
+}
 
 // function* deleteFruit(action) {
 //   try {
@@ -43,8 +47,8 @@ import { takeLatest, put } from "redux-saga/effects";
 
 // SAGAS ALL GO HERE
 function* rootSaga() {
-//   yield takeLatest("FETCH_FRUIT", fetchFruit);
-//   yield takeLatest("ADD_FRUIT", postFruit);
+  yield takeLatest("FETCH_GIFS", fetchGifs);
+//   yield takeLatest("ADD_GIFS", postGifs);
 //   yield takeLatest("DELETE_FRUIT", deleteFruit);
 
   
@@ -59,6 +63,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 
 
+
+// REDUCER
 const ReducerName = (state = [], action) => {
   switch (action.type) {
     case "SCREAMER":

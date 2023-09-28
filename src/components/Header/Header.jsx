@@ -6,7 +6,7 @@ function Header({ pageName }) {
 
     return (
         <header className='App-header'>
-            {/* <img src="../../" alt="" /> */}
+            <img src="../../" alt="" />
             <h1 className='App-title'>{pageName}</h1>
         </header>
     );

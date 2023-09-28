@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
-import Header from '../Header/Header';
-import SearchForm from '../SearchForm/SearchForm';
+// import { Link } from "react-router-dom";
+// import Header from '../Header/Header';
 // import MenuItem from '../MenuItem/MenuItem';
 
 function NavBar() {
