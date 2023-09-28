@@ -4,7 +4,7 @@ import { HashRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 // import Header from '../Header/Header';
-// import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBar'
 // import DisplayItems from '../DisplayItems/DisplayItems'
 // import SearchForm from '../SearchForm/SearchForm'
 
@@ -42,11 +42,11 @@ function App(props) {
           </Route>
 
           <Route path="/DisplayItems" exact>
-            <DisplayItems />
+            {/* <DisplayItems /> */}
           </Route>
 
           <Route path="/SearchForm" exact>
-            <SearchForm />
+            {/* <SearchForm /> */}
           </Route>
 {/* Extra Routes 
           <Route path="/checkout" exact>
