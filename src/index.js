@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './components/App/App';
+import { Provider } from 'react';
+import createSagaMiddleware from 'redux-saga';
+import { put, takeEvery } from 'redux-saga/effects';
+import logger from 'redux-logger';
+import axios from 'axios';
+
+// SAGAS
+
+
+// REDUCERS
+
+
+// STORE
+
+=======
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -10,6 +29,7 @@ import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import axios from "axios";
 import { takeLatest, put } from "redux-saga/effects";
+>>>>>>> 703a2b10e451b178c7a55dcbb6a35e4daf637f43
 
 // function* fetchFruit() {
 //   try {
