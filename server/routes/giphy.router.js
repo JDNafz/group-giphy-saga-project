@@ -10,7 +10,8 @@ require("dotenv").config();
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 
 
-router.get('/gifs/:searchTerm', (req, res) => {
+router.get('/:searchTerm', (req, res) => {
+    console.log("in server giphy req")
     const limit = 10;
     const searchTerm = req.params.searchTerm
 
@@ -19,10 +20,10 @@ router.get('/gifs/:searchTerm', (req, res) => {
 
     axios({
         method: 'GET',
-        url: `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}`
+        url: urlString
     })
         .then((response) => {
-            console.log("get to giphy trending success!", response.data);
+            // console.log("get to giphy trending success!", response.data);
             res.send(response.data);
         })
         .catch((err) => {

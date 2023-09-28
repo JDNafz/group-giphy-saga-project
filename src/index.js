@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+// import "./index.css";
 import App from "./components/App/App.js";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 // Provider allows us to use redux within our react app
@@ -15,8 +15,10 @@ import { takeLatest, put } from "redux-saga/effects";
 
 function* fetchGifs(action) {
   try {
+    console.log("in sagas fetchGifs")
     const gifResponse = yield axios.get("/api/giphy/" + action.payload); // Next line is the .then( assuming no errors
     // put() sends to somewhere in same document
+    console.log("SMOKE", gifResponse.data.data)
     yield put({ type: "SET_GIFS", payload: gifResponse.data });
   } catch (error) {
     console.log("error fetching gifs", error);
@@ -60,6 +62,10 @@ const sagaMiddleware = createSagaMiddleware();
 // action is dipatched. state = ['Apple'] sets the default
 // value of the array.
 
+
+
+
+
 // REDUCER
 const ReducerName = (state = [], action) => {
   switch (action.type) {
@@ -73,7 +79,7 @@ const ReducerName = (state = [], action) => {
 // REDUCERS GO HERE
 const storeInstance = createStore(
   combineReducers({
-    // ReducerName, //JD init, change this
+    ReducerName, //JD init, change this
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
