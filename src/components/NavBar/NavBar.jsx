@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import Header from '../Header/Header';
+import SearchForm from '../SearchForm/SearchForm';
 // import MenuItem from '../MenuItem/MenuItem';
 
 function NavBar() {
@@ -16,9 +17,7 @@ function NavBar() {
                         <MenuItem key={navItem.id} navItem={navItem} />
                     )}
                 </ul> */}
-                <span><button>Favorites</button></span>
-                <span><button>Ducks</button></span>
-                <span><button>General</button></span>
+                <SearchForm />
             </div>
         </>
     );

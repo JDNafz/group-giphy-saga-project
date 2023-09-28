@@ -55,6 +55,10 @@ const sagaMiddleware = createSagaMiddleware();
 // This function (our reducer) will be called when an
 // action is dipatched. state = ['Apple'] sets the default
 // value of the array.
+
+
+
+
 const ReducerName = (state = [], action) => {
   switch (action.type) {
     case "SCREAMER":
