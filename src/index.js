@@ -15,8 +15,10 @@ import { takeLatest, put } from "redux-saga/effects";
 
 function* fetchGifs(action) {
   try {
+    console.log("in sagas fetchGifs")
     const gifResponse = yield axios.get("/api/giphy/" + action.payload); // Next line is the .then( assuming no errors
     // put() sends to somewhere in same document
+    console.log("SMOKE", gifResponse.data.data)
     yield put({ type: "SET_GIFS", payload: gifResponse.data });
   } catch (error) {
     console.log("error fetching gifs", error);

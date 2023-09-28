@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 export default function SearchForm(){
     const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState('')
-    const addFruit = () => {
-      dispatch({ type: "ADD_FRUIT", payload: searchTerm})
+    const fetchGifs = () => {
+      dispatch({ type: "FETCH_GIFS", payload: searchTerm})
     
     }
 
@@ -18,7 +18,7 @@ export default function SearchForm(){
     return (
         <div>
             <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-            <button onClick={(event) => fetchFruit()}>Search</button>
+            <button onClick={(event) => fetchGifs()}>Search</button>
         </div>
     )
 }
