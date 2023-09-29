@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post("/", (req, res) => {
-  let newFav = req.body; // like this: {title: Moby Dick, author: Herman}
+  let newFav = req.body; // like this: {url: "https;..fkfyasdfyaslfys..com/cats", title: "iamge descpritoon"}
   console.log(`Adding newFav`, newFav);
 
   let queryText = ` INSERT INTO favorite ("url","title")
