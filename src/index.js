@@ -29,19 +29,26 @@ function* fetchGifs(action) {
 
 function* postFavorite(action) {
   try {
-    // yield console.log("IN postFavorite", action.payload);
     yield axios.post("/api/favorite", action.payload);
+    console.log("IN postFavorite", action.payload);
+    put({type: "FETCH_FAVORITES"})
   } catch (error) {
     console.log("Error posting GIF", error);
   }
 }
 
-// Watch for a specific action to trigger the postFavoriteGifs saga
-function* watchPostFavoriteGifs() {
-  yield takeLatest('POST_FAVORITE_GIFS', postFavoriteGifs);
+
+
+function* fetchFavorites(){
+  try {
+
+    console.log("SKRRRT")
+    const result = yield axios.get("/api/favorite")
+    put({type: "SET_FAVORITES", payload: result})
+  } catch (error){
+    console.log( "error getting favoriteList")
+  }
 }
-
-
 
 
 
@@ -60,10 +67,9 @@ function* watchPostFavoriteGifs() {
 function* rootSaga() {
   yield takeLatest("FETCH_GIFS", fetchGifs);
   yield takeLatest("POST_FAVORITE" , postFavorite)
+  yield takeLatest("FETCH_FAVORITES", fetchFavorites)
 //   yield takeLatest("ADD_GIFS", postGifs);
 //   yield takeLatest("DELETE_FRUIT", deleteFruit);
-
-  
 }
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -92,7 +98,7 @@ const newGifs = (state = [{ url: "", title: "" }], action) => {
 const favoriteGifs = (state = [], action) => {
   switch (action.type) {
     case "ADD_TO_FAVORITES":
-console.log('whats action.payload', action.payload);  
+// console.log('whats action.payload', action.payload);  
       return action.payload;
     default:
       return state;

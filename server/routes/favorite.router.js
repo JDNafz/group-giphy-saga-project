@@ -9,7 +9,19 @@ const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 
 // return all favorite images
 router.get('/', (req, res) => {
-  res.sendStatus(200);
+  let newFav = req.body; // like this: {url: "https;..fkfyasdfyaslfys..com/cats", title: "iamge descpritoon"}
+  console.log(`getting newFav`, newFav);
+
+  let queryText = ` SELECT * FROM favorite;`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error getting favorites`, error);
+      res.sendStatus(500);
+    });
 });
 
 // add a new favorite

@@ -1,10 +1,8 @@
 import React from 'react'
-// import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 
 export default function Favorites() {
-// const dispatch = useDispatch()
 
 const favoriteGifs = useSelector((store) => store.favoriteGifs);
 
@@ -14,8 +12,6 @@ console.log('what is favorites', favoriteGifs);
   return (
   <>
     <h1>Displaying All Favorites</h1>
-      <button>Ducks</button>
-      <button>Pizza</button>
        <br></br>
        {favoriteGifs.map((thing) => {
           return (

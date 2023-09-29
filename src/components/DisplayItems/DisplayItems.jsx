@@ -10,7 +10,7 @@ function DisplayItems() {
   const dispatch = useDispatch();
 
   const handleClick = (item) => {
-    console.log("adding item to favorites:", item);
+    console.log("Sending item to favorites db:", item);
     dispatch({ type: "POST_FAVORITE", payload: item });
   };
 
