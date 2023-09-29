@@ -59,6 +59,7 @@ function* watchPostFavoriteGifs() {
 // SAGAS ALL GO HERE
 function* rootSaga() {
   yield takeLatest("FETCH_GIFS", fetchGifs);
+  yield takeLatest("POST_FAVORITE" , postFavorite)
 //   yield takeLatest("ADD_GIFS", postGifs);
 //   yield takeLatest("DELETE_FRUIT", deleteFruit);
 
