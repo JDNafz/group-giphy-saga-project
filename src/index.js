@@ -29,8 +29,8 @@ function* fetchGifs(action) {
 
 function* postFavorite(action) {
   try {
-    yield console.log("IN postFavorite", action.payload);
-    // yield axios.post("/api/favorite", {fruit:action.payload});
+    // yield console.log("IN postFavorite", action.payload);
+    yield axios.post("/api/favorite", action.payload);
   } catch (error) {
     console.log("error posting fruit", error);
   }
