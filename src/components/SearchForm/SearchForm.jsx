@@ -13,9 +13,9 @@ export default function SearchForm(){
       history.push('/DisplayItems')
     }
 
-    const fetchFruit = () => {
-      dispatch({ type: "FETCH_FRUIT"})
-    }
+    // const fetchFruit = () => {
+    //   dispatch({ type: "FETCH_FRUIT"})
+    // }
 
     // Displays the fruit selection buttons on the DOM
     return (

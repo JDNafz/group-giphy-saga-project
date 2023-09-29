@@ -7,6 +7,7 @@ import "./App.css";
 // import NavBar from '../NavBar/NavBar'
 import DisplayItems from "../DisplayItems/DisplayItems";
 import SearchForm from "../SearchForm/SearchForm";
+import Categories from "../Categories/Categories";
 
 function App(props) {
   return (
@@ -23,12 +24,12 @@ function App(props) {
         </Route>
 
         <Route path="/SearchForm" exact></Route>
-        {/* Extra Routes 
-          <Route path="/checkout" exact>
-            <CheckoutPage />
+         
+          <Route path="/Categories" exact>
+            <Categories />
           </Route>
 
-          <Route path="/admin" exact>
+          {/* <Route path="/admin" exact>
             <AdminPage />
           </Route> */}
       </div>

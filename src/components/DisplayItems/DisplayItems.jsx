@@ -1,8 +1,16 @@
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // import { Link } from "react-router-dom";
-// import Header from '../Header/Header';
+
+
+
+
 
 function DisplayItems() {
+    const history = useHistory();
+
+
+
   const newGifs = useSelector((state) => state.newGifs);
   console.log("WATER:", newGifs[0]);
   const url0 = newGifs[0];
