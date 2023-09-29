@@ -4,19 +4,18 @@ import { HashRouter as Router, Route } from "react-router-dom";
 
 import "./App.css";
 // import Header from '../Header/Header';
-// import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBar'
 import DisplayItems from "../DisplayItems/DisplayItems";
 import SearchForm from "../SearchForm/SearchForm";
-import Categories from "../Categories/Categories";
+import Favorites from "../Favorites/Favorites";
 
 function App(props) {
   return (
     <Router>
       <div className="App">
         <Route path="/">
-          {/* <NavBar /> */}
+          <NavBar />
           <SearchForm />
-          {/* <DisplayItems /> */}
         </Route>
 
         <Route path="/DisplayItems">
@@ -25,8 +24,8 @@ function App(props) {
 
         <Route path="/SearchForm" exact></Route>
          
-          <Route path="/Categories" exact>
-            <Categories />
+          <Route path="/Favorites" exact>
+            <Favorites />
           </Route>
 
           {/* <Route path="/admin" exact>
