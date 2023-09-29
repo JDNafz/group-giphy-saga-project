@@ -21,7 +21,6 @@ function App(props) {
           <DisplayItems />
         </Route>
 
-        <Route path="/SearchForm" exact></Route>
         {/* Extra Routes 
           <Route path="/checkout" exact>
             <CheckoutPage />
