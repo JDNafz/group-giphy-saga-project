@@ -16,25 +16,42 @@ import { takeLatest, put } from "redux-saga/effects";
 //fetches new gifs from giphy
 function* fetchGifs(action) {
   try {
-    console.log("in sagas fetchGifs")
-    const gifResponse = yield axios.get("/api/giphy/" + action.payload); // 
-    // console.log("SMOKE", gifResponse)
-    yield put({ type: "SET_GIFS", payload: gifResponse.data.data });
+    const gifResponse = yield axios.get("/api/giphy/" + action.payload);
+    try {
+      yield put({ type: "SET_GIFS", payload: gifResponse.data.data });
+    } catch {
+      console.log("failed to SET_GIFS", error);
+    }
   } catch (error) {
     console.log("error fetching gifs", error);
   }
 }
 
+function* postFavorite(action) {
+  try {
+    yield axios.post("/api/favorite", action.payload);
+    console.log("IN postFavorite", action.payload);
+    put({type: "FETCH_FAVORITES"})
+  } catch (error) {
+    console.log("Error posting GIF", error);
+  }
+}
 
-// function* postFruitBasketion) {
-//   try {
-//     // console.log (action.payload);
-//     yield axios.post("/api/favorite", {fruit:action.payload});
-//     yield put({ type: "FETCH_FRUITS" });
-//   } catch (error) {
-//     console.log("error posting fruit", error);
-//   }
-// }
+
+
+function* fetchFavorites(){
+  try {
+
+    console.log("SKRRRT")
+    const result = yield axios.get("/api/favorite")
+    put({type: "SET_FAVORITES", payload: result})
+  } catch (error){
+    console.log( "error getting favoriteList")
+  }
+}
+
+
+
 
 // function* deleteFruit(action) {
 //   try {
@@ -46,14 +63,13 @@ function* fetchGifs(action) {
 //   }
 // }
 
-
 // SAGAS ALL GO HERE
 function* rootSaga() {
   yield takeLatest("FETCH_GIFS", fetchGifs);
-//   yield takeLatest("ADD_FRUIT", postFruitBasket);
+  yield takeLatest("POST_FAVORITE" , postFavorite)
+  yield takeLatest("FETCH_FAVORITES", fetchFavorites)
+//   yield takeLatest("ADD_GIFS", postGifs);
 //   yield takeLatest("DELETE_FRUIT", deleteFruit);
-
-  
 }
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -62,24 +78,38 @@ const sagaMiddleware = createSagaMiddleware();
 // action is dipatched. state = ['Apple'] sets the default
 // value of the array.
 
-
-
-
-
 // REDUCER
-const newGifs = (state = [{url: "", images: {original: {url: ""}}}], action) => {
+const newGifs = (state = [{ url: "", title: "" }], action) => {
   switch (action.type) {
     case "SET_GIFS":
+      //only save the img and the title(a.k.a. description in state)
+      const images = action.payload.map((file) => {
+        return {
+          url: file.images.original.url,
+          title: file.title,
+        };
+      });
+      return images;
+    default:
+      return state;
+  }
+};
+
+const favoriteGifs = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_TO_FAVORITES":
+// console.log('whats action.payload', action.payload);  
       return action.payload;
     default:
       return state;
   }
 };
 
-// REDUCERS GO HERE
+
 const storeInstance = createStore(
   combineReducers({
     newGifs, //JD init, change this
+    favoriteGifs,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)

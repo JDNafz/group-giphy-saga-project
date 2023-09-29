@@ -1,23 +1,16 @@
 import { useSelector } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
-// import { Link } from "react-router-dom";
-// import Header from '../Header/Header';
-// import MenuItem from '../MenuItem/MenuItem';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import './NavBar.css'
 
 function NavBar() {
     const navBar = useSelector(store => store.navBar);
 
-    console.log('navBar', navBar);
-
     return (
         <>
-            <div>   
-                {/* <ul>
-                    {navBarOptions.map((navItem, index) =>
-                        <MenuItem key={navItem.id} navItem={navItem} />
-                    )}
-                </ul> */}
-                <SearchForm/>
+            <div className='nav'>   
+                    <Link to={"/favorites"}><div>Favorites</div></Link>
+                    <Link to={"/"}><div>Search</div></Link>
             </div>
         </>
     );
