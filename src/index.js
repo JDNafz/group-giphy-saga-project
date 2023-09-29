@@ -13,6 +13,7 @@ import { takeLatest, put } from "redux-saga/effects";
 
 // SAGAS
 
+//fetches new gifs from giphy
 function* fetchGifs(action) {
   try {
     console.log("in sagas fetchGifs")

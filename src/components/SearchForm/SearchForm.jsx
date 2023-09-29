@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import DisplayItems from '../DisplayItems/DisplayItems';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export default function SearchForm(){
+  const history = useHistory();
     const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState('')
     const fetchGifs = () => {
       dispatch({ type: "FETCH_GIFS", payload: searchTerm})
-    
+      history.push('/DisplayItems')
     }
 
     const fetchFruit = () => {
@@ -20,7 +22,7 @@ export default function SearchForm(){
         <div>
             <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
             <button onClick={(event) => fetchGifs()}>Search</button>
-            <DisplayItems />
+            
             
         </div>
     )

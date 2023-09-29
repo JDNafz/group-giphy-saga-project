@@ -1,32 +1,29 @@
-import React from 'react';
+import React from "react";
 // import axios from 'axios';
 import { HashRouter as Router, Route } from "react-router-dom";
 
-import './App.css';
+import "./App.css";
 // import Header from '../Header/Header';
 // import NavBar from '../NavBar/NavBar'
-import DisplayItems from '../DisplayItems/DisplayItems'
-import SearchForm from '../SearchForm/SearchForm'
-
+import DisplayItems from "../DisplayItems/DisplayItems";
+import SearchForm from "../SearchForm/SearchForm";
 
 function App(props) {
-
   return (
     <Router>
-      <div className='App'>
-          
+      <div className="App">
         <Route path="/">
-            {/* <NavBar /> */}
-            <SearchForm />
-            {/* <DisplayItems /> */}
-          </Route>
+          {/* <NavBar /> */}
+          <SearchForm />
+          {/* <DisplayItems /> */}
+        </Route>
 
-          <Route path="/DisplayItems" exact>
-          </Route>
+        <Route path="/DisplayItems">
+          <DisplayItems />
+        </Route>
 
-          <Route path="/SearchForm" exact>
-          </Route>
-{/* Extra Routes 
+        <Route path="/SearchForm" exact></Route>
+        {/* Extra Routes 
           <Route path="/checkout" exact>
             <CheckoutPage />
           </Route>
@@ -34,9 +31,8 @@ function App(props) {
           <Route path="/admin" exact>
             <AdminPage />
           </Route> */}
-          </div>
+      </div>
     </Router>
-
   );
 }
 
