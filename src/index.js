@@ -16,21 +16,21 @@ import { takeLatest, put } from "redux-saga/effects";
 //fetches new gifs from giphy
 function* fetchGifs(action) {
   try {
-    console.log("in sagas fetchGifs")
-    const gifResponse = yield axios.get("/api/giphy/" + action.payload); // 
-    // console.log("SMOKE", gifResponse)
-    yield put({ type: "SET_GIFS", payload: gifResponse.data.data });
+    const gifResponse = yield axios.get("/api/giphy/" + action.payload);
+    try {
+      yield put({ type: "SET_GIFS", payload: gifResponse.data.data });
+    } catch {
+      console.log("failed to SET_GIFS", error);
+    }
   } catch (error) {
     console.log("error fetching gifs", error);
   }
 }
 
-
-function* postGifs(action) {
+function* postFavorite(action) {
   try {
-    // console.log (action.payload);
-    yield axios.post("/api/favorite", {fruit:action.payload});
-    yield put({ type: "FETCH_GIFS" });
+    yield console.log("IN postFavorite", action.payload);
+    // yield axios.post("/api/favorite", {fruit:action.payload});
   } catch (error) {
     console.log("error posting fruit", error);
   }
@@ -46,14 +46,11 @@ function* postGifs(action) {
 //   }
 // }
 
-
 // SAGAS ALL GO HERE
 function* rootSaga() {
   yield takeLatest("FETCH_GIFS", fetchGifs);
-//   yield takeLatest("ADD_GIFS", postGifs);
-//   yield takeLatest("DELETE_FRUIT", deleteFruit);
-
-  
+  yield takeLatest("POST_FAVORITE", postFavorite);
+  //   yield takeLatest("DELETE_FRUIT", deleteFruit);
 }
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -62,15 +59,18 @@ const sagaMiddleware = createSagaMiddleware();
 // action is dipatched. state = ['Apple'] sets the default
 // value of the array.
 
-
-
-
-
 // REDUCER
-const newGifs = (state = [{url: "", images: {original: {url: ""}}}], action) => {
+const newGifs = (state = [{ url: "", title: "" }], action) => {
   switch (action.type) {
     case "SET_GIFS":
-      return action.payload;
+      //only save the img and the title(a.k.a. description in state)
+      const images = action.payload.map((file) => {
+        return {
+          url: file.images.original.url,
+          title: file.title,
+        };
+      });
+      return images;
     default:
       return state;
   }

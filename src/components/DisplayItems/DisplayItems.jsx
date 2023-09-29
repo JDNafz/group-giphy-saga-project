@@ -1,25 +1,32 @@
-import { useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
-// import Header from '../Header/Header';
+import { ImageList, ImageListItem } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import './DisplayItems.css'
 
 function DisplayItems() {
   const newGifs = useSelector((state) => state.newGifs);
-  console.log("WATER:", newGifs[0]);
-  const url0 = newGifs[0];
+  const dispatch = useDispatch();
+
+  const handleClick = (item) => {
+    console.log("adding item to favorites:",item)
+    dispatch({type:"POST_FAVORITE", payload:item})
+  }
+
   return (
     <>
-      <div>
-        {newGifs.map((thing) => {
-          return (
-            <>
+      <div className="imageListContainer">
+        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+          {newGifs.map((item,idx) => {
+            // console.log("ITEM:",item);
+            return(
+            <ImageListItem key={`result${idx}`}>
               <img
-                key={thing.url}
-                src={thing.images.original.url}
-                alt="gif"
+                onClick={() => handleClick(item)}
+                src={item.url}
+                alt={item.title}
               ></img>
-            </>
-          );
-        })}
+            </ImageListItem>
+          )})}
+        </ImageList>
       </div>
     </>
   );
