@@ -11,8 +11,8 @@ function NavBar() {
     return (
         <>
             <div className='nav'>   
-                    <Link to={"/"}><div>Favorites</div></Link>
-                    <Link to={"/favorites"}><div>Search</div></Link>
+                    <Link to={"/favorites"}><div>Favorites</div></Link>
+                    <Link to={"/"}><div>Search</div></Link>
             </div>
         </>
     );

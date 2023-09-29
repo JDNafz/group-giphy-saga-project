@@ -26,15 +26,40 @@ function* fetchGifs(action) {
 }
 
 
-function* postGifs(action) {
+// function* postFavoriteGifs(action) {
+//   try {
+//     // console.log (action.payload);
+//     yield axios.post("/api/favorite", action.payload);
+//     yield put({ type: "SET_GIFS", payload: {gif });
+//   } catch (error) {
+//     console.log("error posting fruit", error);
+//   }
+// }
+
+
+// ...
+
+function* postFavoriteGifs(action) {
   try {
-    // console.log (action.payload);
-    yield axios.post("/api/favorite", {fruit:action.payload});
-    yield put({ type: "FETCH_GIFS" });
+    yield axios.post("/api/favorite", action.payload);
+
+    // Dispatch a SET_GIFS action with an appropriate payload if needed
+    // Replace 'payloadValue' with the actual payload you want to send
+    yield put({ type: "SET_GIFS", payload: action.payload });
   } catch (error) {
-    console.log("error posting fruit", error);
+    console.log("Error posting GIF", error);
   }
 }
+
+// Watch for a specific action to trigger the postFavoriteGifs saga
+function* watchPostFavoriteGifs() {
+  yield takeLatest('POST_FAVORITE_GIFS', postFavoriteGifs);
+}
+
+
+
+
+
 
 // function* deleteFruit(action) {
 //   try {
@@ -50,7 +75,7 @@ function* postGifs(action) {
 // SAGAS ALL GO HERE
 function* rootSaga() {
   yield takeLatest("FETCH_GIFS", fetchGifs);
-//   yield takeLatest("ADD_GIFS", postGifs);
+  yield takeLatest("ADD_FAVORITE_GIFS", postFavoriteGifs);
 //   yield takeLatest("DELETE_FRUIT", deleteFruit);
 
   
@@ -76,10 +101,22 @@ const newGifs = (state = [{url: "", images: {original: {url: ""}}}], action) => 
   }
 };
 
-// REDUCERS GO HERE
+const favoriteGifs = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_TO_FAVORITES":
+console.log('whats action.payload', action.payload);  
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+
+
 const storeInstance = createStore(
   combineReducers({
     newGifs, //JD init, change this
+    favoriteGifs,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
