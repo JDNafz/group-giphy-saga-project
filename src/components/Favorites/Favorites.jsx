@@ -6,8 +6,8 @@ export default function Favorites() {
   return (
   <>
     <h1>Displaying All Favorites</h1>
-    <button> </button>
-    <button> </button>
+    <button>Ducks</button>
+    <button>Pizza</button>
 </>
   )
 }
