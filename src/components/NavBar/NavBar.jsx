@@ -6,8 +6,6 @@ import './NavBar.css'
 function NavBar() {
     const navBar = useSelector(store => store.navBar);
 
-    console.log('navBar', navBar);
-
     return (
         <>
             <div className='nav'>   

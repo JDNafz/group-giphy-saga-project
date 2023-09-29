@@ -1,12 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
-
-
-
-
+import { ImageList, ImageListItem } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import './DisplayItems.css'
 
 function DisplayItems() {
       const history = useHistory();
@@ -14,31 +8,29 @@ function DisplayItems() {
 
 
   const newGifs = useSelector((state) => state.newGifs);
-  console.log("WATER:", newGifs[0]);
-  const url0 = newGifs[0];
+  const dispatch = useDispatch();
 
+  const handleClick = (item) => {
+    console.log("adding item to favorites:",item)
+    dispatch({type:"POST_FAVORITE", payload:item})
+  }
 
-  const addToFavorites = (thing) => {
-    // Dispatch an action to add the GIF to favorites
-    dispatch({ type: "ADD_TO_FAVORITES", payload: thing });
-  };
   return (
     <>
-      <div>
-        {newGifs.map((thing) => {
-          return (
-            <>
-             <button onClick={() => addToFavorites(thing)}>Add to favorites</button>
-             <br></br>
+      <div className="imageListContainer">
+        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+          {newGifs.map((item,idx) => {
+            // console.log("ITEM:",item);
+            return(
+            <ImageListItem key={`result${idx}`}>
               <img
-                key={thing.url}
-                src={thing.images.original.url}
-                alt="gif"
+                onClick={() => handleClick(item)}
+                src={item.url}
+                alt={item.title}
               ></img>
-             
-            </>
-          );
-        })}
+            </ImageListItem>
+          )})}
+        </ImageList>
       </div>
     </>
   );

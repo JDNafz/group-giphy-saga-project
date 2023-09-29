@@ -13,8 +13,21 @@ router.get('/', (req, res) => {
 });
 
 // add a new favorite
-router.post('/', (req, res) => {
-  res.sendStatus(200);
+router.post("/", (req, res) => {
+  let newFav = req.body; // like this: {url: "https;..fkfyasdfyaslfys..com/cats", title: "iamge descpritoon"}
+  console.log(`Adding newFav`, newFav);
+
+  let queryText = ` INSERT INTO favorite ("url","title")
+                    VALUES ($1, $2);`;
+  pool
+    .query(queryText, [newFav.url, newFav.title])
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`Error adding new Fav`, error);
+      res.sendStatus(500);
+    });
 });
 
 // update given favorite with a category id
